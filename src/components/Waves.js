@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import round100 from '../hooks/round100';
 
 const Waves = ({ latitude, longitude }) => {
   const [waveHeight, setWaveHeight] = useState('Loading...')
@@ -16,7 +17,7 @@ const Waves = ({ latitude, longitude }) => {
       setWaveHeight(currentWaves)
     }
     useEffect(() => {
-      fetch(`https://marine-api.open-meteo.com/v1/marine?latitude=${latitude}&longitude=${longitude}&hourly=wave_height&length_unit=metric&timezone=auto&past_days=1`)
+      fetch(`https://marine-api.open-meteo.com/v1/marine?latitude=${round100(latitude) }&longitude=${round100(longitude)}&hourly=wave_height&length_unit=metric&timezone=auto&past_days=1`)
         .then((response) => {
           if(response.ok) return response.json()
           console.log(response)
@@ -38,7 +39,7 @@ return (
         textAlign: 'right',
         fontWeight: 'bold',
         fontSize: '20px'}}>
-      {waveHeight} {waveHeight !== 'Loading...' && waveHeight !== 'No waves' ? 'meters' : null} 
+      {waveHeight}{waveHeight !== 'Loading...' && waveHeight !== 'No waves' ? 'm' : null} 
     </div>
   )
 }
