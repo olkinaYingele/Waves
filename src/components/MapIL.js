@@ -5,17 +5,18 @@ import round100 from '../hooks/round100';
 
 const MapIL = () => {
     const citiesGeolocation= [
-        {city: 'Tel Aviv', lat: 32.0853, lng: 34.7818},
-        { city: 'Haifa', lat:32.7940, lng: 34.9896},
-        { city: 'Ashdod', lat:31.8014, lng: 34.6433},
+        {city: 'Tel Aviv', lat: 32.088392208449804, lng: 34.76966857910157},
+        { city: 'Haifa', lat:32.82651912783954, lng: 34.95986938476563},
+        { city: 'Ashdod', lat:31.800558330295235, lng: 34.62753295898438},
         { city: 'Netanya', lat:32.3329, lng: 34.8599},
-        { city: 'Ashkelon', lat:31.6700, lng: 34.5715},
-        { city: 'Herzliya', lat:32.1631, lng: 34.8447},
-        { city: 'Bat Yam', lat:32.0238, lng: 34.7509},
+        { city: 'Ashkelon', lat:31.680264464234185, lng: 34.55200195312501},
+        { city: 'Herzliya', lat:32.17474068868919, lng: 34.79953765869141},
+        { city: 'Bat Yam', lat:32.027579497298156, lng: 34.74048614501954},
         { city: 'Caesarea', lat:32.5149, lng: 34.9044},
-        { city: 'Jaffa (part of Tel Aviv)', lat:32.0528, lng: 34.7556},
-        { city: 'Akko (Acre)', lat:32.9273, lng: 35.0766},
-        { city: 'Hadera', lat:32.4366, lng: 34.9172},
+        { city: 'Jaffa', lat:32.0528, lng: 34.7556},
+        { city: 'Nahariya', lat:33.0121183038527, lng: 35.08346557617188},
+        { city: 'Akko', lat:32.9273, lng: 35.0766},
+        { city: 'Hadera', lat:32.4414081066761, lng: 34.88021850585938},
         { city: 'Eilat', lat:29.5569, lng: 34.9519}
     ]
     
