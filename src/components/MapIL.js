@@ -42,7 +42,8 @@ const MapIL = () => {
         )
     }
     return(
-      <MapContainer center={position} zoom={8} scrollWheelZoom={false} 
+      <MapContainer center={position} zoom={8} 
+    //   <MapContainer center={position} zoom={8} scrollWheelZoom={false} 
             style={{width: '100%', height: "100vh"}}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
