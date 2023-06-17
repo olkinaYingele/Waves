@@ -3,35 +3,43 @@ import round100 from '../hooks/round100';
 import { control } from 'leaflet';
 
 const Waves = ({ latitude, longitude }) => {
-  const [waveHeight, setWaveHeight] = useState('Loading...')
-  console.log(latitude, longitude)
+  const [waveHeight, setWaveHeight] = useState()
+  const [popupText, setPopupText] = useState('Loading...')
+  //console.log(latitude, longitude)
   const getWavesHeight = (data) => {
-    console.log("in getWavesHeight")
-    console.log(data)
+   // console.log("in getWavesHeight")
+    //console.log(data)
     const hours = data.hourly.time;
     const currentDateJSON = new Date().toJSON() // "2023-05-25T23:00"
     const currentHour =   currentDateJSON.substring(0, 13) + ":00"
-    console.log(currentHour)
+    //console.log(currentHour)
     const index = hours.indexOf(currentHour)
-    console.log (index)
+   // console.log (index)
     const currentWaves = data.hourly.wave_height[index]
     setWaveHeight(currentWaves)
+    setPopupText(currentWaves  + "m")
   }
   useEffect(() => {
     fetch(`https://marine-api.open-meteo.com/v1/marine?latitude=${round100(latitude) }&longitude=${round100(longitude)}&hourly=wave_height&length_unit=metric&timezone=auto&past_days=1`)
       .then((response) => {
         if(response.ok) return response.json()
         console.log(response)
-        throw new Error (response.reason)
+        throw new Error (response.statusText, { cause: response })
       })
       .then((actualData) => getWavesHeight(actualData))
       .catch((error) => {
-        console.log("in fetch catcing an error")
-        setWaveHeight('No waves')
+        console.log("in fetch catcing an error:", error.message)
+        setWaveHeight(100)
+        console.log(error.couse);
+        if (error.message === "Bad Request") {
+          setPopupText('No waves')
+        } else if (error.message === "Failed to fetch"){
+          setPopupText('Check your internet connection')
+        } else {
+          setPopupText('Error: ' + error.message)
+        }
+        
       });
-      // .then((actualData) => {
-      //   console.log(actualData)
-      // });
   });
 
   const getColor =  (waveHeight) => {
@@ -78,7 +86,7 @@ return (
         fontWeight: 'bold',
         fontSize: '20px',
         color: getColor(waveHeight)}}>
-      {waveHeight}{waveHeight !== 'Loading...' && waveHeight !== 'No waves' ? 'm' : null} 
+      {popupText} 
     </div>
   )
 }

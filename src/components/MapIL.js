@@ -27,8 +27,8 @@ const MapIL = () => {
         const [latitude, setLatitude] = useState(null)
         const [longitude, setLongitude] = useState(null)
         const map = useMapEvents({
-        click(e) {
-            console.log("[", e.latlng.lat, ",", e.latlng.lng, ']');
+            click(e) {
+                //console.log("[", e.latlng.lat, ",", e.latlng.lng, ']');
                 setLatitude((e.latlng.lat))
                 setLongitude((e.latlng.lng))
                 setPosition([e.latlng.lat, e.latlng.lng])
